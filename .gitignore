@@ -21,3 +21,13 @@ Thumbs.db
  
 # VS Code
 .vscode/
+
+# Terraform
+*.tfstate
+*.tfstate.backup
+.terraform/
+.terraform.lock.hcl
+
+# Env files
+*.env
+
