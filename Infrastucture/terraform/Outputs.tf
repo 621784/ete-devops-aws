@@ -44,4 +44,30 @@ output "jenkins_instance_profile" {
 }
 
  
+# ECS OUTPUTS
+ 
+output "ecs_cluster_name" {
 
+  value = module.ecs.ecs_cluster_name
+
+}
+ 
+output "ecs_task_execution_role_arn" {
+
+  value = module.ecs.ecs_task_execution_role_arn
+
+}
+ 
+output "backend_log_group" {
+
+  value = module.ecs.backend_log_group
+
+}
+ 
+output "frontend_log_group" {
+
+  value = module.ecs.frontend_log_group
+
+}
+
+ 

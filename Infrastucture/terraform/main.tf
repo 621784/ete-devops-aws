@@ -28,3 +28,12 @@ module "iam" {
 
 }
 
+#ECS Module
+
+module "ecs" {
+
+  source = "./ecs"
+
+  
+}
+
