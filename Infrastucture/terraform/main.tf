@@ -1,18 +1,30 @@
-# ROOT MODULE - CALLING ALL CHILD MODULES
-# VPC Module
-
+# VPC MODULE
 module "vpc" {
 
   source = "./vpc"
 
 }
+ 
 
 
-# ECR Module
+# ECR MODULE
+
 
 module "ecr" {
 
   source = "./ecr"
+
+}
+ 
+
+
+# IAM MODULE
+
+
+
+module "iam" {
+
+  source = "./iam"
 
 }
 

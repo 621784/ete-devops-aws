@@ -1,105 +1,56 @@
-# IAM Role for Jenkins to push to ECR + ECS
-resource "aws_iam_role" "jenkins_role" {
+# IAM ROLE (EC2 → Jenkins)
 
+resource "aws_iam_role" "jenkins_role" {
   name = "jenkins-ci-role"
  
   assume_role_policy = jsonencode({
-
-    Version = "2012-10-17"
-
-    Statement = [
-
-      {
-
-        Effect = "Allow"
-
-        Principal = {
-
-          Service = "ec2.amazonaws.com"
-
-        }
-
-        Action = "sts:AssumeRole"
-
-      }
-
-    ]
-
+    Version = "2012-10-17",
+    Statement = [{
+      Effect = "Allow",
+      Principal = {
+        Service = "ec2.amazonaws.com"
+      },
+      Action = "sts:AssumeRole"
+    }]
   })
-
 }
  
 
+# IAM POLICY (ECR Access)
 
-# IAM Policy for ECR Full Access
-
-
- 
 resource "aws_iam_policy" "ecr_access_policy" {
-
   name = "jenkins-ecr-policy"
  
   policy = jsonencode({
-
-    Version = "2012-10-17"
-
-    Statement = [
-
-      {
-
-        Action = [
-
-          "ecr:GetAuthorizationToken",
-
-          "ecr:BatchCheckLayerAvailability",
-
-          "ecr:BatchGetImage",
-
-          "ecr:PutImage",
-
-          "ecr:InitiateLayerUpload",
-
-          "ecr:UploadLayerPart",
-
-          "ecr:CompleteLayerUpload"
-
-        ]
-
-        Effect   = "Allow"
-
-        Resource = "*"
-
-      }
-
-    ]
-
+    Version = "2012-10-17",
+    Statement = [{
+      Effect = "Allow",
+      Action = [
+        "ecr:GetAuthorizationToken",
+        "ecr:BatchGetImage",
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:PutImage",
+        "ecr:InitiateLayerUpload",
+        "ecr:UploadLayerPart",
+        "ecr:CompleteLayerUpload"
+      ],
+      Resource = "*"
+    }]
   })
-
 }
  
 
+# ATTACH POLICY → ROLE
 
-# Attach policy to role
-
- 
-resource "aws_iam_role_policy_attachment" "jenkins_ecr_attach" {
-
+resource "aws_iam_role_policy_attachment" "jenkins_attach" {
   role       = aws_iam_role.jenkins_role.name
-
   policy_arn = aws_iam_policy.ecr_access_policy.arn
-
 }
  
 
-
-# IAM Instance Profile for EC2
+# INSTANCE PROFILE (EC2)
 
 resource "aws_iam_instance_profile" "jenkins_instance_profile" {
-
   name = "jenkins-instance-profile"
-
   role = aws_iam_role.jenkins_role.name
-
 }
-
- 
