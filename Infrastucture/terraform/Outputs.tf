@@ -33,3 +33,18 @@ output "frontend_ecr_url" {
 
 }
 
+#IAM OUTPUTS
+output "jenkins_instance_profile" {
+
+  value = module.iam.jenkins_instance_profile
+
+}
+ 
+output "jenkins_role_arn" {
+
+  value = module.iam.jenkins_role_arn
+
+}
+
+ 
+
