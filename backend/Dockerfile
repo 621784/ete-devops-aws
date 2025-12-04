@@ -1,6 +1,6 @@
 FROM node:20-alpine
 
-# 2. Create app directory
+# Create app directory
 
 WORKDIR /app
 
