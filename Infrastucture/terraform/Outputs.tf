@@ -1,73 +1,56 @@
-# VPC OUTPUTS
-
+# VPC
 output "vpc_id" {
-
   value = module.vpc.vpc_id
-
 }
  
 output "public_subnets" {
-
   value = module.vpc.public_subnets
-
 }
  
 output "private_subnets" {
-
   value = module.vpc.private_subnets
-
 }
  
-
-# ECR OUTPUTS
-
+# ECR
 output "backend_ecr_url" {
-
   value = module.ecr.backend_ecr_url
-
 }
  
 output "frontend_ecr_url" {
-
   value = module.ecr.frontend_ecr_url
-
-}
-
-#IAM OUTPUTS
-
-output "jenkins_role_arn" {
-  value = module.iam.jenkins_role_arn
 }
  
-output "jenkins_instance_profile" {
-  value = module.iam.jenkins_instance_profile
-}
-
- 
-# ECS OUTPUTS
- 
+# ECS
 output "ecs_cluster_name" {
-
-  value = module.ecs.ecs_cluster_name
-
+  value = module.ecs.cluster_name
 }
  
-output "ecs_task_execution_role_arn" {
-
-  value = module.ecs.ecs_task_execution_role_arn
-
+output "backend_task_def_arn" {
+  value = module.ecs.backend_task_def_arn
 }
  
-output "backend_log_group" {
-
-  value = module.ecs.backend_log_group
-
+output "frontend_task_def_arn" {
+  value = module.ecs.frontend_task_def_arn
 }
  
-output "frontend_log_group" {
-
-  value = module.ecs.frontend_log_group
-
+# ALB
+output "alb_dns_name" {
+  value = module.alb.alb_dns_name
 }
-
  
+output "backend_tg_arn" {
+  value = module.alb.backend_tg_arn
+}
+ 
+output "frontend_tg_arn" {
+  value = module.alb.frontend_tg_arn
+}
+ 
+# ECS Services
+output "backend_service_name" {
+  value = module.ecs_services.backend_service_name
+}
+ 
+output "frontend_service_name" {
+  value = module.ecs_services.frontend_service_name
+}

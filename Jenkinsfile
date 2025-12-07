@@ -7,6 +7,10 @@ pipeline {
  
         BACKEND_REPO = "foundation-backend-ecr"
         FRONTEND_REPO = "foundation-frontend-ecr"
+ 
+        BACKEND_SERVICE = "foundation-backend-service"
+        FRONTEND_SERVICE = "foundation-frontend-service"
+        ECS_CLUSTER = "foundation-day-cluster"
     }
  
     tools {
@@ -82,14 +86,33 @@ pipeline {
                 """
             }
         }
+ 
+        stage("Redeploy ECS Services") {
+            steps {
+                sh """
+                aws ecs update-service \
+                  --cluster ${ECS_CLUSTER} \
+                  --service ${BACKEND_SERVICE} \
+                  --force-new-deployment \
+                  --region ${AWS_REGION}
+ 
+                aws ecs update-service \
+                  --cluster ${ECS_CLUSTER} \
+                  --service ${FRONTEND_SERVICE} \
+                  --force-new-deployment \
+                  --region ${AWS_REGION}
+                """
+            }
+        }
     }
  
     post {
         success {
-            echo "CI Pipeline Completed Successfully!"
+            echo "CI/CD PIPELINE COMPLETED & ECS REDEPLOYED SUCCESSFULLY!"
         }
+ 
         failure {
-            echo "CI Pipeline Failed!"
+            echo "CI/CD PIPELINE FAILED!"
         }
     }
 }

@@ -1,1 +1,4 @@
-#No Variables
+variable "region" {}
+variable "account_id" {}
+variable "backend_repo_name" {}
+variable "frontend_repo_name" {}

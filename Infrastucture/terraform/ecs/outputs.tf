@@ -1,24 +1,18 @@
-output "ecs_cluster_name" {
+output "cluster_name" {
 
   value = aws_ecs_cluster.foundation_cluster.name
 
 }
  
-output "ecs_task_execution_role_arn" {
+output "backend_task_def_arn" {
 
-  value = aws_iam_role.ecs_task_execution_role.arn
-
-}
- 
-output "backend_log_group" {
-
-  value = aws_cloudwatch_log_group.backend_logs.name
+  value = aws_ecs_task_definition.backend_task.arn
 
 }
  
-output "frontend_log_group" {
+output "frontend_task_def_arn" {
 
-  value = aws_cloudwatch_log_group.frontend_logs.name
+  value = aws_ecs_task_definition.frontend_task.arn
 
 }
 
