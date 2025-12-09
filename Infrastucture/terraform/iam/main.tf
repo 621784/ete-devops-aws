@@ -1,4 +1,4 @@
-# IAM ROLE (EC2 → Jenkins)
+# IAM ROLE (EC2  Jenkins)
 
 resource "aws_iam_role" "jenkins_role" {
   name = "jenkins-ci-role"
@@ -40,7 +40,7 @@ resource "aws_iam_policy" "ecr_access_policy" {
 }
  
 
-# ATTACH POLICY → ROLE
+# ATTACH POLICY  ROLE
 
 resource "aws_iam_role_policy_attachment" "jenkins_attach" {
   role       = aws_iam_role.jenkins_role.name

@@ -10,15 +10,15 @@ app.use(cors());
 
 app.use(express.json());
  
-/* ---------------- ROOT TEST ROUTE ---------------- */
+/* ROOT TEST ROUTE */
 
 app.get("/", (req, res) => {
 
-  res.json({ message: "Foundation Day Backend Running Successfully ✅" });
+  res.json({ message: "Foundation Day Backend Running Successfully " });
 
 });
  
-/* ---------------- HEALTH CHECK (FOR AWS / PROMETHEUS / LB) ---------------- */
+/*  HEALTH CHECK (FOR AWS / PROMETHEUS / LB)  */
 
 app.get("/health", (req, res) => {
 
@@ -26,7 +26,7 @@ app.get("/health", (req, res) => {
 
 });
  
-/* ---------------- FRONTEND CONNECTION TEST API (STEP 1) ---------------- */
+/*  FRONTEND CONNECTION TEST API */
 
 app.get("/api/message", (req, res) => {
 
@@ -42,13 +42,13 @@ app.get("/api/message", (req, res) => {
 
 });
  
-/* ---------------- SERVER PORT CONFIG ---------------- */
+/*SERVER PORT CONFIG */
 
 const PORT = process.env.PORT || 5000;
  
 app.listen(PORT, () => {
 
-  console.log(`✅ Backend running on port ${PORT}`);
+  console.log(` Backend running on port ${PORT}`);
 
 });
 
