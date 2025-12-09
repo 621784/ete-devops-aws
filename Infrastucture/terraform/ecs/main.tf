@@ -24,17 +24,17 @@ resource "aws_iam_role" "ecs_task_execution_role" {
 }
  
 resource "aws_iam_role_policy_attachment" "ecs_exec_policy" {
-  role       = aws_iam_role.ecs_task_execution_role.name
+  role= aws_iam_role.ecs_task_execution_role.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }
  
 resource "aws_ecs_task_definition" "backend_task" {
-  family                   = "foundation-backend-task"
+  family= "foundation-backend-task"
   requires_compatibilities = ["FARGATE"]
-  network_mode             = "awsvpc"
-  cpu                      = 256
-  memory                   = 512
-  execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
+  network_mode= "awsvpc"
+  cpu= 256
+  memory= 512
+  execution_role_arn= aws_iam_role.ecs_task_execution_role.arn
  
   container_definitions = jsonencode([{
     name  = "backend"
@@ -43,14 +43,14 @@ resource "aws_ecs_task_definition" "backend_task" {
  
     portMappings = [{
       containerPort = 5000
-      protocol      = "tcp"
+      protocol= "tcp"
     }]
  
     logConfiguration = {
       logDriver = "awslogs"
       options = {
-        awslogs-group         = "/ecs/foundation-backend"
-        awslogs-region        = var.region
+        awslogs-group= "/ecs/foundation-backend"
+        awslogs-region= var.region
         awslogs-stream-prefix = "backend"
       }
     }
@@ -58,12 +58,12 @@ resource "aws_ecs_task_definition" "backend_task" {
 }
  
 resource "aws_ecs_task_definition" "frontend_task" {
-  family                   = "foundation-frontend-task"
+  family= "foundation-frontend-task"
   requires_compatibilities = ["FARGATE"]
-  network_mode             = "awsvpc"
-  cpu                      = 256
-  memory                   = 512
-  execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
+  network_mode= "awsvpc"
+  cpu= 256
+  memory= 512
+  execution_role_arn= aws_iam_role.ecs_task_execution_role.arn
  
   container_definitions = jsonencode([{
     name  = "frontend"
@@ -72,14 +72,14 @@ resource "aws_ecs_task_definition" "frontend_task" {
  
     portMappings = [{
       containerPort = 80
-      protocol      = "tcp"
+      protocol= "tcp"
     }]
  
     logConfiguration = {
       logDriver = "awslogs"
       options = {
-        awslogs-group         = "/ecs/foundation-frontend"
-        awslogs-region        = var.region
+        awslogs-group= "/ecs/foundation-frontend"
+        awslogs-region= var.region
         awslogs-stream-prefix = "frontend"
       }
     }

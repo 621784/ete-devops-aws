@@ -42,9 +42,9 @@ variable "azs" {
 
   description = "Availability Zones"
 
-  type        = list(string)
+  type= list(string)
 
-  default     = ["ap-south-1a", "ap-south-1b"]
+  default= ["ap-south-1a", "ap-south-1b"]
 
 }
 

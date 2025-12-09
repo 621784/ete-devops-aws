@@ -1,6 +1,6 @@
 resource "aws_ecr_repository" "backend" {
 
-  name                 = "foundation-backend-ecr"
+  name= "foundation-backend-ecr"
 
   image_tag_mutability = "MUTABLE"
  
@@ -22,7 +22,7 @@ resource "aws_ecr_repository" "backend" {
  
 resource "aws_ecr_repository" "frontend" {
 
-  name                 = "foundation-frontend-ecr"
+  name= "foundation-frontend-ecr"
 
   image_tag_mutability = "MUTABLE"
  
