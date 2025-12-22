@@ -4,8 +4,12 @@ function Home() {
 
     const [backendMessage, setBackendMessage] = useState("");
  
-  useEffect(() => {
-    fetch("http://localhost:5000/api/message")
+ useEffect(() => {
+    const protocol = window.location.protocol; // 'http:' or 'https:'
+    const hostname = window.location.hostname;
+    const apiUrl = `${protocol}//${hostname}:5000/api/message`;
+
+    fetch(apiUrl)
       .then((res) => res.json())
       .then((data) => {
         setBackendMessage(data.status);
@@ -15,7 +19,6 @@ function Home() {
         setBackendMessage("Disconnected");
       });
   }, []);
-
 
   useEffect(() => {
     const targetDate = new Date("2025-12-31T00:00:00").getTime();
