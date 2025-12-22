@@ -9,6 +9,7 @@ COPY package*.json ./
 #Install only production dependencies
 
 RUN npm install --production
+RUN npm install --save express
  
 # Copy the rest of your backend code
 
